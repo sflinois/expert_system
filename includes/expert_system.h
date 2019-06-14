@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:43:56 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/08 14:03:16 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/14 13:40:21 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ enum rule_tkn{
     T_XOR,
     T_VAL,
     T_NOT_VAL,
-    T_BRACKET,
+    T_BRACKET_O,
+    T_BRACKET_C,
     T_IMPLIES,
     T_ENDL
 };
@@ -35,8 +36,6 @@ typedef struct      s_tkn
     line_type       l_type;
     rule_tkn        r_type;
     char            val;
-    struct s_tkn    *left;
-    struct s_tkn    *right;
 }                   t_tkn;
 
 #endif

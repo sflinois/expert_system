@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parser.class.hpp                                   :+:      :+:    :+:   */
+/*   GlobalGraph.class.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/08 12:46:37 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:05:46 by sflinois         ###   ########.fr       */
+/*   Created: 2019/06/14 13:15:43 by sflinois          #+#    #+#             */
+/*   Updated: 2019/06/14 14:05:27 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_CLASS_HPP
-# define PARSER_CLASS_HPP
+#ifndef GLOBALGRAPH_CLASS_HPP
+# define GLOBALGRAPH_CLASS_HPP
 
 # include "expert_system.h"
-# include "GlobalGraph.class.hpp"
-# include <list>
+# include "GGraphNode.hpp"
 
-class Parser
+class GlobalGraph
 {
     public:
-        Parser();
-        Parser(Parser const &src);
-        Parser(std::list<t_tkn*> tkn_lst);
-        ~Parser();
+        GlobalGraph();
+        GlobalGraph(GlobalGraph const &src);
+        ~GlobalGraph();
 
-        Parser&         operator=(Parser const &rhs);
-
-        
+        GlobalGraph&         operator=(GlobalGraph const &rhs);
 
     private:
-        std::list<t_tkn*>      _tkn_lst;
+        std::list<GGraphNode*>  node_list;
 };
 
 #endif

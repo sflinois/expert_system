@@ -6,18 +6,18 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 10:40:24 by sflinois          #+#    #+#              #
-#    Updated: 2019/06/08 12:40:52 by sflinois         ###   ########.fr        #
+#    Updated: 2019/06/14 11:43:58 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = abstract_vm
 
 SRC_PATH = ./srcs
-SRC_NAME = main.cpp
+SRC_NAME = main.cpp Lexer.class.cpp
 OBJ_PATH = objs
 INC = -I./includes
 
-CC = clang++
+CC = clang++ -fsanitize=address
 CC_FLAGS = -Wall -Werror -Wextra -std=c++11
 
 OBJ_NAME = $(SRC_NAME:.cpp=.o)

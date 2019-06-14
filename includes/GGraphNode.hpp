@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parser.class.hpp                                   :+:      :+:    :+:   */
+/*   GGraphNode.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/08 12:46:37 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:05:46 by sflinois         ###   ########.fr       */
+/*   Created: 2019/06/14 13:35:28 by sflinois          #+#    #+#             */
+/*   Updated: 2019/06/14 14:03:42 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_CLASS_HPP
-# define PARSER_CLASS_HPP
+#ifndef GGRAPHNODE_HPP
+# define GGRAPHNODE_HPP
 
-# include "expert_system.h"
-# include "GlobalGraph.class.hpp"
-# include <list>
+# define LEFT_NOT 1
+# define RIGHT_NOT 2
 
-class Parser
+#include <list>
+
+enum node_type{
+    FACT_NODE,
+    NOTFACT_NODE,
+    AND_NODE,
+    OR_NODE,
+    XOR_NODE,
+    IMPLY_NODE,
+};
+
+struct GGraphNode
 {
-    public:
-        Parser();
-        Parser(Parser const &src);
-        Parser(std::list<t_tkn*> tkn_lst);
-        ~Parser();
-
-        Parser&         operator=(Parser const &rhs);
-
-        
-
-    private:
-        std::list<t_tkn*>      _tkn_lst;
+    node_type               type;
+    std::list<GGraphNode*>  in_list;
+    std::list<GGraphNode*>  out_list;
+    char                    is_not;
+    bool                    value;
 };
 
 #endif

@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parser.class.hpp                                   :+:      :+:    :+:   */
+/*   GlobalGraph.class.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/08 12:46:37 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:05:46 by sflinois         ###   ########.fr       */
+/*   Created: 2019/06/14 13:15:48 by sflinois          #+#    #+#             */
+/*   Updated: 2019/06/14 13:41:36 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_CLASS_HPP
-# define PARSER_CLASS_HPP
+#include "GlobalGraph.class.hpp"
 
-# include "expert_system.h"
-# include "GlobalGraph.class.hpp"
-# include <list>
-
-class Parser
+GlobalGraph::GlobalGraph()
 {
-    public:
-        Parser();
-        Parser(Parser const &src);
-        Parser(std::list<t_tkn*> tkn_lst);
-        ~Parser();
+    
+}
 
-        Parser&         operator=(Parser const &rhs);
+GlobalGraph::GlobalGraph(GlobalGraph const &src)
+{
+    *this = src;
+}
 
-        
+GlobalGraph::~GlobalGraph()
+{
 
-    private:
-        std::list<t_tkn*>      _tkn_lst;
-};
+}
 
-#endif
+GlobalGraph&              GlobalGraph::operator=(GlobalGraph const &rhs)
+{
+    return (*this);
+}
+
