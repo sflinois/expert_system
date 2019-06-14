@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:45:58 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 13:18:19 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:22:40 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@ Parser::~Parser()
 
 }
 
-Parser&              Parser::operator=(Parser const &rhs)
+Parser&                 Parser::operator=(Parser const &rhs)
 {
      this->_tkn_lst = rhs._tkn_lst;
     return (*this);
+}
+
+
+GlobalGraph             Parser::parsTokenList(std::list<t_tkn*> tkn)
+{
+
 }
 

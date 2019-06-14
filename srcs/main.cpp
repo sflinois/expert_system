@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:32:52 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:09:07 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:20:52 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int		main(int argc, char **argv)
         return (1);
     }
     tkn = lex.tokenize(argv[1]);
-    // pars.parsTokenList(tkn);
+    pars.parsTokenList(tkn);
 }

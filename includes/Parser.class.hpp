@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:46:37 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:05:46 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:22:07 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Parser
 
         Parser&         operator=(Parser const &rhs);
 
-        
+        GlobalGraph     parsTokenList(std::list<t_tkn*> tkn);
 
     private:
         std::list<t_tkn*>      _tkn_lst;
