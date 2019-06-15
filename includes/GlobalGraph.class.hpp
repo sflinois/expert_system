@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:43 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 14:05:27 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/15 14:47:36 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ class GlobalGraph
 
     private:
         std::list<GGraphNode*>  node_list;
+        std::list<GGraphNode*>  fact_node;
+        std::list<GGraphNode*>  tfact_node;
+        std::list<GGraphNode*>  query_node;
 };
 
 #endif
