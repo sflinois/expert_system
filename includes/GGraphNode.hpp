@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:35:28 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/15 15:52:04 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/18 16:13:41 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct GGraphNode
     node_type               type;
     std::list<GGraphNode*>  in_list;
     std::list<GGraphNode*>  out_list;
-    char                    is_not;
+    bool                    is_not;
     bool                    value;
 };
 

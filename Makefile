@@ -6,11 +6,11 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 10:40:24 by sflinois          #+#    #+#              #
-#    Updated: 2019/06/18 12:14:32 by sflinois         ###   ########.fr        #
+#    Updated: 2019/06/18 17:21:56 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = abstract_vm
+NAME = expert_system
 
 SRC_PATH = ./srcs
 SRC_NAME = main.cpp \

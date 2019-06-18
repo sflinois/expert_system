@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:45:58 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/18 15:51:58 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/18 16:32:18 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,22 @@ Parser&                 Parser::operator=(Parser const &rhs)
 GlobalGraph*            Parser::parsTokenList(std::list<t_tkn*> tkn)
 {
     GlobalGraph         *gg = new GlobalGraph();
-    // GGraphNode          *tmp = NULL;
     int                 err;
 
     this->_tkn_lst = tkn;
     while((err = this->checkTknLine()) == 0)
     {
+        for(t_tkn *tkn : this->_tkn_lst)
+        {
+            // std::cout << "DEBUG " << tkn->r_type << std::endl;
+            if (tkn->r_type == T_ENDL)
+                break;
+        }
+        while (this->_tkn_lst.front() && this->_tkn_lst.front()->r_type != T_ENDL)
+            this->_tkn_lst.pop_front();
+        this->_tkn_lst.pop_front();
     }
+    std::cout << std::endl << err << std::endl;
     return (gg);
 }
 
@@ -96,9 +105,6 @@ int                     Parser::checkTknLine()
             prev = tkn;
         }
     }
-    while (this->_tkn_lst.front() && this->_tkn_lst.front()->r_type != T_ENDL)
-        this->_tkn_lst.pop_front();
-    this->_tkn_lst.pop_front();
     return (err);
 }
 
