@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:48:07 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 13:15:38 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:56:37 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 #define     OPE_XOR '^'
 #define     OPE_NOT '!'
 #define     OPE_IMPLY '>'
+#define     OPE_BRACKET_O '('
+#define     OPE_BRACKET_C ')'
+
+
 
 #define     FACT_CHAR '='
 #define     QUERY_CHAR '?'

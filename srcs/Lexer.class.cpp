@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 13:11:13 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/14 13:09:37 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:47:55 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,10 @@ int             Lexer::add_rule_tkn(std::string line)
             this->init_tkn(&tkn, c, L_RULE, T_OR);
         else if (c == OPE_XOR)
             this->init_tkn(&tkn, c, L_RULE, T_XOR);
+        else if (c == OPE_BRACKET_O)
+            this->init_tkn(&tkn, c, L_RULE, T_BRACKET_O);
+        else if (c == OPE_BRACKET_C)
+            this->init_tkn(&tkn, c, L_RULE, T_BRACKET_C);
         else if (c == OPE_NOT)
             is_special_char = 1;
         else if (c == FACT_CHAR)
@@ -216,6 +220,6 @@ void            Lexer::print_tkn_list()
 {
     for(t_tkn *tkn: this->_tkn_lst)
     {
-        std::cout << tkn->val << " ";
+        std::cout << tkn->val << ":" << tkn->r_type << ":" << tkn->l_type << " ";
     }
 }

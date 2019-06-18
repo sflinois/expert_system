@@ -6,14 +6,17 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 10:40:24 by sflinois          #+#    #+#              #
-#    Updated: 2019/06/15 15:17:52 by sflinois         ###   ########.fr        #
+#    Updated: 2019/06/18 12:14:32 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = abstract_vm
 
 SRC_PATH = ./srcs
-SRC_NAME = main.cpp Lexer.class.cpp
+SRC_NAME = main.cpp \
+		   Lexer.class.cpp \
+		   Parser.class.cpp \
+		   GlobalGraph.class.cpp
 OBJ_PATH = objs
 INC = -I./includes
 

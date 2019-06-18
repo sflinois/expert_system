@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:46:37 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/15 15:52:03 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:35:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "expert_system.h"
 # include "GlobalGraph.class.hpp"
 # include <list>
+# include <iostream>
 
 class Parser
 {
@@ -34,9 +35,10 @@ class Parser
         int     checkTknLine();
         int     checkValue(t_tkn* prev, t_tkn* tkn);
         int     checkOperators(t_tkn* prev, t_tkn* tkn);
-        int     checkInply(t_tkn* prev, t_tkn* tkn);
+        int     checkImply(t_tkn* prev, t_tkn* tkn);
         int     checkBrackets(t_tkn* prev, t_tkn* tkn);
         int     checkFactList(t_tkn* prev, t_tkn* tkn);
+        bool    prevTkn(t_tkn* prev);
 
         std::list<t_tkn*>      _tkn_lst;
 };
