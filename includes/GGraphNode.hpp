@@ -24,6 +24,7 @@ enum node_type{
     XOR_NODE,
     OR_NODE,
     AND_NODE
+
 };
 
 struct GGraphNode
