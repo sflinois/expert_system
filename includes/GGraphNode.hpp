@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:35:28 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/18 16:13:41 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/21 15:39:08 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 enum node_type{
     FACT_NODE,
     NOTFACT_NODE,
-    AND_NODE,
-    OR_NODE,
     XOR_NODE,
-    IMPLY_NODE,
+    OR_NODE,
+    AND_NODE
 };
 
 struct GGraphNode
 {
     node_type               type;
     std::list<GGraphNode*>  in_list;
-    std::list<GGraphNode*>  out_list;
-    bool                    is_not;
-    bool                    value;
+    char                    is_not;
+    char                    value;
+    char                    name;
+    char                    priority;
 };
 
 #endif
