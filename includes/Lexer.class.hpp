@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:48:07 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/18 13:56:37 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 15:03:15 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ class           Lexer
 
 		Lexer&		        operator=(Lexer const &rhs);
 
-        std::list<t_tkn*>    tokenize(char *file);
+        std::list<t_tkn*>   tokenize(char *file);
+        void                print_tkn_list(std::list<t_tkn*> lst);
 
     private:
         int                 tokenize_line(std::string line);
@@ -53,7 +54,6 @@ class           Lexer
         int                 add_query_tkn(std::string line);
         void                init_tkn(t_tkn **tkn, char c ,line_type l_type, rule_tkn r_type);
 
-        void                print_tkn_list();
 
         std::list<t_tkn*>      _tkn_lst;
 };

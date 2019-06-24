@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 13:11:13 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/20 14:34:36 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 15:02:57 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ std::list<t_tkn*>    Lexer::tokenize(char *file)
         }
 	}
 	ifs.close();
-    this->print_tkn_list();
+    this->print_tkn_list(this->_tkn_lst);
 	return (this->_tkn_lst);
 }
 
@@ -216,9 +216,9 @@ void            Lexer::init_tkn(t_tkn **tkn, char c ,line_type l_type, rule_tkn 
     (*tkn)->val = c;
 }
 
-void            Lexer::print_tkn_list()
+void            Lexer::print_tkn_list(std::list<t_tkn*> lst)
 {
-    for(t_tkn *tkn: this->_tkn_lst)
+    for(t_tkn *tkn: lst)
     {
         std::cout << tkn->val ;//<< ":" << tkn->r_type << ":" << tkn->l_type << " ";
     }
