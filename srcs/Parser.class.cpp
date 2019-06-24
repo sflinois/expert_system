@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:45:58 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/21 14:44:27 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:34:40 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ int                     Parser::checkImply(t_tkn* prev, t_tkn* tkn)
 {
     if (!tkn)
         return (1);
-    if (tkn && (tkn->r_type == T_VAL || tkn->r_type == T_NOT_VAL))
+    if (tkn && (tkn->r_type == T_VAL))
     {
         if (!prevTkn(prev))
             return (1);

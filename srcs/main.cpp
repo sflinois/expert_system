@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:32:52 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 15:34:28 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:34:06 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int		main(int argc, char **argv)
         return (1);
     tkn = pars.parsTokenList(tkn);
     if (tkn.empty())
+    {
         std::cout << "Error occured during parsing" << std::endl;
+        return (1);
+    }
     graph.init(tkn);
     graph.display_graph();
     

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:48 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 17:04:19 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:32:56 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,10 +200,14 @@ GGraphNode*                 GlobalGraph::get_fact_node(char name)
     for (GGraphNode* g : this->_fact_list)
     {
         if (g->name == name)
+        {
+            std::cout  << g->name << g << std::endl;
             return (g);
+        }
     }
     ret = new GGraphNode();
     ret->name = name;
+    std::cout  << ret->name << ret << std::endl;
     ret->type = FACT_NODE;
     ret->value = 0;
     this->_fact_list.push_back(ret);
@@ -216,8 +220,9 @@ std::list<GGraphNode*>       GlobalGraph::implied_fact_nodes(std::list<GGraphNod
     GGraphNode              *tmp;
     while (lst->back()->priority == 0)
     {
-        if (lst->back()->type == FACT_NODE &&
-            search_node(implied_nodes, lst->back()->name) == NULL)
+        // std::cout << lst->back()->type ;
+        // std::cout << " IMPLIED " << lst->back()->name << std::endl;
+        if (lst->back()->type == FACT_NODE)
         {
             tmp = get_fact_node(lst->back()->name);
             implied_nodes.push_back(tmp);
@@ -236,9 +241,10 @@ void                        GlobalGraph::remove_tkn_line(std::list<t_tkn*> *tkn,
     line_nodes->clear();
 }
 
-void                        GlobalGraph::display_graph(){
+void                        GlobalGraph::display_graph()
+{
     std::list<GGraphNode*>::iterator fact_it;
-    std::list<GGraphNode*>::iterator it;;
+    std::list<GGraphNode*>::iterator it;
 
     std::cout << "_fact_list:" << std::endl;
     fact_it = this->_fact_list.begin();
@@ -258,8 +264,20 @@ void                        GlobalGraph::display_graph(){
     fact_it = this->_query_node.begin();
     while (fact_it != this->_query_node.end())
     {
-        std::cout << (*fact_it)->name << std::endl;
+        display_in_list(*fact_it, 0);
         ++fact_it;
     }
     std::cout << "end display" << std::endl;
+}
+
+void                    GlobalGraph::display_in_list(GGraphNode* node, int space)
+{
+    for (GGraphNode* n : node->in_list)
+    {
+        for (int i = 0; i < space; i++){ std::cout << "|";}
+        std::cout << node->name << " < " << n->name  << std::endl;
+        display_in_list(n, space + 1);
+    }
+    for (int i = 0; i < space; i++){ std::cout << "|";}
+    std::cout << "END " << node->name << std::endl;
 }

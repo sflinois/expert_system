@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:43 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 15:50:19 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:15:38 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class GlobalGraph
 
         void                init(std::list<t_tkn*> tkn);
         void                display_graph();
+        void                display_in_list(GGraphNode* node, int space);
 
     private:
 
