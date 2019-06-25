@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:48 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 17:32:56 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:06:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ GlobalGraph&              GlobalGraph::operator=(GlobalGraph const &rhs)
 
 void                        GlobalGraph::init(std::list<t_tkn*> tkn)
 {
-    std::list<GGraphNode*>  line_nodes;
-    std::list<GGraphNode*>  implied_nodes;
-    GGraphNode*             tmp;
-    line_type               l_type;
-    int                     priority = 1;
+    std::list<GGraphNode*>          line_nodes;
+    std::list<GGraphNode*>          implied_nodes;
+    std::pair<GGraphNode*, bool>    tmp;
+    line_type                       l_type;
+    int                             priority = 1;
     
     while((l_type = get_line_nodes(&tkn, &line_nodes)) != L_QUERY)
     {
@@ -104,63 +104,70 @@ line_type                   GlobalGraph::get_line_nodes(std::list<t_tkn*> *tkn,
     return (ret);
 }
 
-GGraphNode*                 GlobalGraph::init_fact_line(std::list<GGraphNode*> line_nodes, int priority)
+std::pair<GGraphNode*, bool>    GlobalGraph::init_fact_line(std::list<GGraphNode*> line_nodes, int priority)
 {
     std::list<GGraphNode*>::iterator it;
     std::list<GGraphNode*>::iterator lhs;
     std::list<GGraphNode*>::iterator rhs;
-    GGraphNode*                      ret;
+    std::pair<GGraphNode*, bool>     ret;
 
-    ret = NULL;
+    ret.first = NULL;
+    ret.second = false;
     for (it = line_nodes.begin(); it != line_nodes.end(); ++it)
     {
         lhs = std::prev(it);
         rhs = std::next(it);
         if ((*it)->priority == priority && (*it)->type == AND_NODE)
-            ret = this->handleOperator(it, lhs, rhs, line_nodes);
+            ret.first = this->handleOperator(it, lhs, rhs, line_nodes);
     }
     for (it = line_nodes.begin(); it != line_nodes.end(); ++it)
     {
         lhs = std::prev(it);
         rhs = std::next(it);
         if ((*it)->priority == priority && (*it)->type == OR_NODE)
-            ret = this->handleOperator(it, lhs, rhs, line_nodes);
+            ret.first = this->handleOperator(it, lhs, rhs, line_nodes);
     }
     for (it = line_nodes.begin(); it != line_nodes.end(); ++it)
     {
         lhs = std::prev(it);
         rhs = std::next(it);
         if ((*it)->priority == priority && (*it)->type == XOR_NODE)
-            ret = this->handleOperator(it, lhs, rhs, line_nodes);
+            ret.first = this->handleOperator(it, lhs, rhs, line_nodes);
     }
     if (priority > 1)
         return (this->init_fact_line(line_nodes, priority - 1));
-    if (ret == NULL)
-        return(get_fact_node(line_nodes.front()->name));
+    if (ret.first == NULL)
+    {
+        ret.first = get_fact_node(line_nodes.front()->name);
+        ret.second = line_nodes.front()->type == NOTFACT_NODE ? true : false;
+    }
     return (ret);
 }
 
-GGraphNode*                 GlobalGraph::handleOperator(std::list<GGraphNode*>::iterator it, std::list<GGraphNode*>::iterator lhs,
+GGraphNode*                     GlobalGraph::handleOperator(std::list<GGraphNode*>::iterator it, std::list<GGraphNode*>::iterator lhs,
                                     std::list<GGraphNode*>::iterator rhs, std::list<GGraphNode*> line_nodes)
 {
-    if ((*lhs)->type == NOTFACT_NODE)
-        (*it)->is_not |= 1;
-    if ((*rhs)->type == NOTFACT_NODE)
-        (*it)->is_not |= 2;
+    std::pair<GGraphNode*, bool>     lhs_node;
+    std::pair<GGraphNode*, bool>     rhs_node;
+
+    lhs_node.second = (*lhs)->type == NOTFACT_NODE ? true : false;
+    rhs_node.second = (*rhs)->type == NOTFACT_NODE ? true : false;
     if ((*lhs)->type == NOTFACT_NODE || (*lhs)->type == FACT_NODE)
     {
-        (*it)->in_list.push_back(get_fact_node((*lhs)->name));
+        lhs_node.first = get_fact_node((*lhs)->name);
         delete *lhs;
     }
     else
-        (*it)->in_list.push_back((*lhs));
+        lhs_node.first = (*lhs);
+    (*it)->in_list.push_back(lhs_node);
     if ((*rhs)->type == NOTFACT_NODE || (*rhs)->type == FACT_NODE)
     {
-        (*it)->in_list.push_back(get_fact_node((*rhs)->name));
+        rhs_node.first = get_fact_node((*rhs)->name);
         delete *rhs;
     }
     else
-        (*it)->in_list.push_back((*rhs));
+        rhs_node.first = (*rhs);
+    (*it)->in_list.push_back(rhs_node);
     this->_node_list.push_back((*it));
     line_nodes.erase(lhs);
     line_nodes.erase(rhs);
@@ -200,14 +207,10 @@ GGraphNode*                 GlobalGraph::get_fact_node(char name)
     for (GGraphNode* g : this->_fact_list)
     {
         if (g->name == name)
-        {
-            std::cout  << g->name << g << std::endl;
             return (g);
-        }
     }
     ret = new GGraphNode();
     ret->name = name;
-    std::cout  << ret->name << ret << std::endl;
     ret->type = FACT_NODE;
     ret->value = 0;
     this->_fact_list.push_back(ret);
@@ -272,11 +275,11 @@ void                        GlobalGraph::display_graph()
 
 void                    GlobalGraph::display_in_list(GGraphNode* node, int space)
 {
-    for (GGraphNode* n : node->in_list)
+    for (std::pair<GGraphNode*, bool> n : node->in_list)
     {
         for (int i = 0; i < space; i++){ std::cout << "|";}
-        std::cout << node->name << " < " << n->name  << std::endl;
-        display_in_list(n, space + 1);
+        std::cout << node->name << " < " << n.first->name  << std::endl;
+        display_in_list(n.first, space + 1);
     }
     for (int i = 0; i < space; i++){ std::cout << "|";}
     std::cout << "END " << node->name << std::endl;

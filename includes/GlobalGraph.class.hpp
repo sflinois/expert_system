@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:43 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 17:15:38 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:02:59 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ class GlobalGraph
 
     private:
 
-        line_type               get_line_nodes(std::list<t_tkn*> *tkn, std::list<GGraphNode*>* line_nodes);
-        GGraphNode*             init_fact_line(std::list<GGraphNode*> line_nodes, int priority);
-        GGraphNode*             handleOperator(std::list<GGraphNode*>::iterator it,
+        line_type                       get_line_nodes(std::list<t_tkn*> *tkn, std::list<GGraphNode*>* line_nodes);
+        std::pair<GGraphNode*, bool>    init_fact_line(std::list<GGraphNode*> line_nodes, int priority);
+        GGraphNode*                     handleOperator(std::list<GGraphNode*>::iterator it,
                                     std::list<GGraphNode*>::iterator lsh,
-                                    std::list<GGraphNode*>::iterator rhs,
+                                    std::list<GGraphNode*>::iterator rhs, 
                                     std::list<GGraphNode*> line_nodes);
 
         void                    init_rule_line(std::list<GGraphNode*> line_nodes);
