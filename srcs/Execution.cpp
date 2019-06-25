@@ -47,8 +47,12 @@ char                        Execution::searchValue(std::pair<GGraphNode*, bool> 
     if (node.first == nullptr)
         return -1;
 
-    if (node.first->value != 0)
+    if (node.first->value != 0) {
+        if (node.second) {
+            return node.first->value == 1 ? -1 : 1;
+        }
         return node.first->value;
+    }
 
     if (node.first->type == AND_NODE) {
         std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin();
@@ -81,12 +85,18 @@ char                        Execution::searchValue(std::pair<GGraphNode*, bool> 
         for (std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin(); it != node.first->in_list.end(); it++) {
             if (this->searchValue(*it) == 1) {
                 node.first->value = 1;
-                return 1;
+                if (node.second) {
+                    return node.first->value == 1 ? -1 : 1;
+                }
+                return node.first->value;
             }
         }
     }
     node.first->value = -1;
-    return -1;
+    if (node.second) {
+        return node.first->value == 1 ? -1 : 1;
+    }
+    return node.first->value;
 }
 
 void                        Execution::resolveQueries(void) {

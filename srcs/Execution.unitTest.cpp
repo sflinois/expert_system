@@ -437,6 +437,8 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
     }
 
     SECTION( "Resolve Queries" ) {
+
+        SECTION( "Resolve Queries All False" ) {
             GGraphNode  *nodeB = creatNode(FACT_NODE, 'B', false, 0);
 
             GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
@@ -470,7 +472,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             delete exec;
         }
 
-        SECTION( "Resolve Queries" ) {
+        SECTION( "Resolve Queries True and False" ) {
             GGraphNode  *nodeB = creatNode(FACT_NODE, 'B', false, 1);
 
             GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
@@ -503,5 +505,114 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
 
             delete exec;
         }
+
+    }
+
+    SECTION( "Negation" ) {
+
+        SECTION( "Negation init true" ) {
+            GGraphNode  *nodeB = creatNode(FACT_NODE, 'B', false, 1);
+
+            GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
+            nodeA->in_list.push_back({nodeB, true});
+
+            GGraphNode  *nodeD = creatNode(FACT_NODE, 'D', false, 0);
+
+            GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
+            nodeC->in_list.push_back({nodeD, false});
+
+            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+
+            Execution   *exec = new Execution(queriesNode);
+
+            // Send Node A directly but can search first query in QueriesNode
+            std::ostringstream oss;
+            // Save the CERR at instante T
+            std::streambuf* p_cout_streambuf = std::cout.rdbuf();
+            // Assign OSS to the CERR for save CERR in OSS
+            std::cout.rdbuf(oss.rdbuf());
+
+            // Execute function to test on CERR
+            exec->resolveQueries();
+
+            // Restore CERR at instante T (before test)
+            std::cout.rdbuf(p_cout_streambuf);
+
+            // test your oss content...
+            CHECK(oss.str() == "A is False\nC is False\n");
+
+            delete exec;
+        }
+
+        SECTION( "Negation init False" ) {
+            GGraphNode  *nodeB = creatNode(FACT_NODE, 'B', false, 0);
+
+            GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
+            nodeA->in_list.push_back({nodeB, true});
+
+            GGraphNode  *nodeD = creatNode(FACT_NODE, 'D', false, 0);
+
+            GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
+            nodeC->in_list.push_back({nodeD, false});
+
+            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+
+            Execution   *exec = new Execution(queriesNode);
+
+            // Send Node A directly but can search first query in QueriesNode
+            std::ostringstream oss;
+            // Save the CERR at instante T
+            std::streambuf* p_cout_streambuf = std::cout.rdbuf();
+            // Assign OSS to the CERR for save CERR in OSS
+            std::cout.rdbuf(oss.rdbuf());
+
+            // Execute function to test on CERR
+            exec->resolveQueries();
+
+            // Restore CERR at instante T (before test)
+            std::cout.rdbuf(p_cout_streambuf);
+
+            // test your oss content...
+            CHECK(oss.str() == "A is True\nC is False\n");
+
+            delete exec;
+        }
+
+        SECTION( "Negation with AND" ) {
+            GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 1);
+
+            GGraphNode  *nodeB = creatNode(FACT_NODE, 'B', false, 0);
+
+            GGraphNode  *nodep = creatNode(AND_NODE, '+', false, 0);
+
+            GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
+            nodeA->in_list.push_back({nodep, false});
+            nodep->in_list.push_back({nodeB, true});
+            nodep->in_list.push_back({nodeC, false});
+
+            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+
+            Execution   *exec = new Execution(queriesNode);
+
+            // Send Node A directly but can search first query in QueriesNode
+            std::ostringstream oss;
+            // Save the CERR at instante T
+            std::streambuf* p_cout_streambuf = std::cout.rdbuf();
+            // Assign OSS to the CERR for save CERR in OSS
+            std::cout.rdbuf(oss.rdbuf());
+
+            // Execute function to test on CERR
+            exec->resolveQueries();
+
+            // Restore CERR at instante T (before test)
+            std::cout.rdbuf(p_cout_streambuf);
+
+            // test your oss content...
+            CHECK(oss.str() == "A is True\n");
+
+            delete exec;
+        }
+
+    }
 
 }
