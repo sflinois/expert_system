@@ -16,7 +16,9 @@ SRC_PATH = ./srcs
 SRC_NAME = main.cpp \
 		   Lexer.class.cpp \
 		   Parser.class.cpp \
-		   GlobalGraph.class.cpp
+		   GlobalGraph.class.cpp \
+		   Execution.cpp \
+		   Execution.unitTest.cpp
 OBJ_PATH = objs
 INC = -I./includes
 
@@ -45,5 +47,8 @@ fclean: clean
 		@rm -f $(NAME)
 
 re: fclean all
+
+test: all
+	$(NAME) test
 
 .PHONY: all clean fclean re

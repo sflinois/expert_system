@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* Init Unit Test */
+#define CATCH_CONFIG_RUNNER
+#include "catch.hpp"
+
 #include "expert_system.h"
 #include "Lexer.class.hpp"
 #include "Parser.class.hpp"
@@ -29,6 +33,7 @@ int		main(int argc, char **argv)
         return (1);
     }
     tkn = lex.tokenize(argv[1]);
+
     if (tkn.empty())
         return (1);
     tkn = pars.parsTokenList(tkn);
@@ -39,6 +44,8 @@ int		main(int argc, char **argv)
     }
     graph.init(tkn);
     graph.display_graph();
-    
-    return (0);
+
+    /* Init Unit Test */
+    int result = Catch::Session().run();
+    return result;
 }
