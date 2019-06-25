@@ -7,6 +7,7 @@ GGraphNode *    creatNode(node_type type, char name, bool is_not, char value) {
     node->type = type;
     node->name = name;
     node->value = value;
+    (void)is_not;
     return node;
 }
 
