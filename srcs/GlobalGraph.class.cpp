@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:48 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/25 14:42:40 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:25:43 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,7 @@ void                    GlobalGraph::display_in_list(GGraphNode* node, int space
     std::cout << node->name << std::endl;
     for (std::pair<GGraphNode*, bool> n : node->in_list)
     {
-        for (int i = 0; i < space + 1; i++){ std::cout << "|";}
+        for (int i = 0; i < space + 1; i++){ std::cout << "*";}
         display_in_list(n.first, space + 1);
     }
 }
