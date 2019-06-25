@@ -18,6 +18,7 @@
 #include "Lexer.class.hpp"
 #include "Parser.class.hpp"
 #include "GlobalGraph.class.hpp"
+#include "Execution.hpp"
 #include <list>
 
 int		main(int argc, char **argv)
@@ -43,7 +44,14 @@ int		main(int argc, char **argv)
         return (1);
     }
     graph.init(tkn);
-    graph.display_graph();
+    // graph.display_graph();
+
+    std::list<GGraphNode*> queriesNode = graph.get_query_list();
+
+
+    Execution       exec(queriesNode);
+
+    exec.resolveQueries();
 
     /* Init Unit Test */
     int result = Catch::Session().run();

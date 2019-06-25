@@ -7,7 +7,7 @@ Execution::Execution(void) {
 }
 
 //=================/ PARAM CONSTRUCTOR /==================//
-Execution::Execution(std::list<std::pair<GGraphNode*, bool>> queriesNode) : _queriesNode(queriesNode) {
+Execution::Execution(std::list<GGraphNode*> queriesNode) : _queriesNode(queriesNode) {
     // std::cout << "Param Execution Constructor called" << std::endl;
     return;
 }
@@ -41,7 +41,7 @@ std::ostream &		operator<<(std::ostream & o, Execution const & i) {
     return o;
 }
 
-std::list<std::pair<GGraphNode*, bool>>      Execution::getQueriesNode(void) const { return this->_queriesNode; }
+std::list<GGraphNode*>      Execution::getQueriesNode(void) const { return this->_queriesNode; }
 
 char                        Execution::searchValue(std::pair<GGraphNode*, bool> node) {
     if (node.first == nullptr)
@@ -100,9 +100,9 @@ char                        Execution::searchValue(std::pair<GGraphNode*, bool> 
 }
 
 void                        Execution::resolveQueries(void) {
-    for (std::pair<GGraphNode*, bool> q : this->_queriesNode) {
+    for (GGraphNode* q : this->_queriesNode) {
         std::string str;
-        char ret = this->searchValue(q);
+        char ret = this->searchValue({q, false});
         if (ret == -1) {
             str = "False";
         } else if (ret == 1) {
@@ -110,6 +110,6 @@ void                        Execution::resolveQueries(void) {
         } else {
             str = "Undefine";
         }
-        std::cout << q.first->name << " is " << str << std::endl;
+        std::cout << q->name << " is " << str << std::endl;
     }
 }

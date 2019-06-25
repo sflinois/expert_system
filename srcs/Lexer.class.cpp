@@ -56,7 +56,7 @@ std::list<t_tkn*>    Lexer::tokenize(char *file)
         }
 	}
 	ifs.close();
-    this->print_tkn_list(this->_tkn_lst);
+    // this->print_tkn_list(this->_tkn_lst);
 	return (this->_tkn_lst);
 }
 

@@ -25,7 +25,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
         GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
         nodeC->in_list.push_back({nodeD, false});
 
-        std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA, false}};
+        std::list<GGraphNode*> queriesNode = {nodeA};
 
         CHECK_NOTHROW(Execution(queriesNode));
 
@@ -42,22 +42,22 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
         GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
         nodeC->in_list.push_back({nodeD, false});
 
-        std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA, false}};
+        std::list<GGraphNode*> queriesNode = {nodeA};
 
         Execution   *exec = new Execution(queriesNode);
 
-        std::list<std::pair<GGraphNode*, bool>> queries = exec->getQueriesNode();
+        std::list<GGraphNode*> queries = exec->getQueriesNode();
 
         CHECK(queries == queriesNode);
 
-        GGraphNode* node = queries.begin()->first;
+        GGraphNode* node = *queries.begin();
 
         CHECK(node == nodeA);
         CHECK(node->type == FACT_NODE);
         CHECK(node->name == 'A');
         CHECK(node->value == 0);
 
-        std::list<std::pair<GGraphNode*, bool>>::iterator it = queries.begin();
+        std::list<GGraphNode*>::iterator it = queries.begin();
         it++;
         CHECK(it == queries.end());
 
@@ -77,7 +77,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
             nodeC->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -99,7 +99,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             nodeA->in_list.push_back({nodeC, false});
             nodeA->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA, false}};
+            std::list<GGraphNode*> queriesNode = {nodeA};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -121,7 +121,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             nodeA->in_list.push_back({nodeC, false});
             nodeA->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -153,7 +153,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeA = creatNode(FACT_NODE, 'A', false, 0);
             nodeA->in_list.push_back({nodeB, false});
             
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -186,7 +186,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -218,7 +218,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -252,7 +252,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -284,7 +284,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -316,7 +316,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -350,7 +350,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -382,7 +382,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -414,7 +414,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 nodep->in_list.push_back({nodeB, false});
                 nodep->in_list.push_back({nodeC, false});
 
-                std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+                std::list<GGraphNode*> queriesNode = {nodeA};
 
                 Execution   *exec = new Execution(queriesNode);
 
@@ -449,7 +449,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
             nodeC->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA, nodeC};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -483,7 +483,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
             nodeC->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA, nodeC};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -521,7 +521,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
             nodeC->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA, nodeC};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -555,7 +555,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             GGraphNode  *nodeC = creatNode(FACT_NODE, 'C', false, 0);
             nodeC->in_list.push_back({nodeD, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}, {nodeC,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA, nodeC};
 
             Execution   *exec = new Execution(queriesNode);
 
@@ -590,7 +590,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             nodep->in_list.push_back({nodeB, true});
             nodep->in_list.push_back({nodeC, false});
 
-            std::list<std::pair<GGraphNode*, bool>> queriesNode = {{nodeA,false}};
+            std::list<GGraphNode*> queriesNode = {nodeA};
 
             Execution   *exec = new Execution(queriesNode);
 
