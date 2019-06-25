@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 13:15:43 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/25 14:02:59 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/25 15:29:45 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class GlobalGraph
         ~GlobalGraph();
 
         GlobalGraph&        operator=(GlobalGraph const &rhs);
+
+        std::list<GGraphNode*>  &get_query_list();
 
         void                init(std::list<t_tkn*> tkn);
         void                display_graph();
