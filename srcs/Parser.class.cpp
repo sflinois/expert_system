@@ -58,7 +58,7 @@ std::list<t_tkn*>       &Parser::parsTokenList(std::list<t_tkn*> tkn)
         err = 1;
     if (err != 2)
         this->_tkn_lst.clear();
-    std::cout << std::endl << err << std::endl;
+    // std::cout << std::endl << err << std::endl;
     return (this->_tkn_lst);
 }
 

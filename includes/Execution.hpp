@@ -12,12 +12,12 @@ class Execution {
 
         //=================/ CONSTRUCTOR /==================//
         Execution(void);
-        Execution(std::list<std::pair<GGraphNode*, bool>> queriesNode);
+        Execution(std::list<GGraphNode*> queriesNode);
         ~Execution(void);
         //=================/  OPERATOR   /==================//
         //=================/  VARIABLE   /==================//
         //=================/   GETTER    /==================//
-        std::list<std::pair<GGraphNode*, bool>>      getQueriesNode(void) const;
+        std::list<GGraphNode*>      getQueriesNode(void) const;
         //=================/   SETTER    /==================//
         //=================/  FUNCTION   /==================//
         char                        searchValue(std::pair<GGraphNode*, bool> node);
@@ -30,7 +30,7 @@ class Execution {
         //=================/  OPERATOR   /==================//
         Execution &		operator=(Execution const & src);
         //=================/  VARIABLE   /==================//
-        std::list<std::pair<GGraphNode*, bool>>      _queriesNode;
+        std::list<GGraphNode*>      _queriesNode;
         //=================/   GETTER    /==================//
         //=================/   SETTER    /==================//
         //=================/  FUNCTION   /==================//
