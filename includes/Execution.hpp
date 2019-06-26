@@ -20,7 +20,7 @@ class Execution {
         std::list<GGraphNode*>      getQueriesNode(void) const;
         //=================/   SETTER    /==================//
         //=================/  FUNCTION   /==================//
-        char                        searchValue(std::pair<GGraphNode*, bool> node);
+        char                        searchValue(std::pair<GGraphNode*, bool> node, std::list<GGraphNode*> check);
         void                        resolveQueries(void);
 
     private:

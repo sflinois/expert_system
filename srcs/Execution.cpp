@@ -43,7 +43,7 @@ std::ostream &		operator<<(std::ostream & o, Execution const & i) {
 
 std::list<GGraphNode*>      Execution::getQueriesNode(void) const { return this->_queriesNode; }
 
-char                        Execution::searchValue(std::pair<GGraphNode*, bool> node) {
+char                        Execution::searchValue(std::pair<GGraphNode*, bool> node, std::list<GGraphNode*> check) {
     if (node.first == nullptr)
         return -1;
 
@@ -54,36 +54,45 @@ char                        Execution::searchValue(std::pair<GGraphNode*, bool> 
         return node.first->value;
     }
 
+    if (find(check.begin(), check.end(), node.first) != check.end()) {
+        node.first->value = -1;
+        if (node.second) {
+            return node.first->value == 1 ? -1 : 1;
+        }
+        return node.first->value;
+    }
+
     if (node.first->type == AND_NODE) {
         std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin();
-        char f = this->searchValue(*it);
+        char f = this->searchValue(*it, check);
         it++;
-        char e = this->searchValue(*it);
+        char e = this->searchValue(*it, check);
         node.first->value = (f == 1 & e == 1) ? 1 : -1;
         return node.first->value;
     }
 
     if (node.first->type == OR_NODE) {
         std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin();
-        char f = this->searchValue(*it);
+        char f = this->searchValue(*it, check);
         it++;
-        char e = this->searchValue(*it);
+        char e = this->searchValue(*it, check);
         node.first->value = (f == 1 | e == 1) ? 1 : -1;
         return node.first->value;
     }
 
     if (node.first->type == XOR_NODE) {
         std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin();
-        char f = this->searchValue(*it);
+        char f = this->searchValue(*it, check);
         it++;
-        char e = this->searchValue(*it);
+        char e = this->searchValue(*it, check);
         node.first->value = ((f == 1) ^ (e == 1)) ? 1 : -1;
         return node.first->value;
     }
 
     if (node.first->type == FACT_NODE) {
+        check.push_back(node.first);
         for (std::list<std::pair<GGraphNode*, bool>>::iterator it = node.first->in_list.begin(); it != node.first->in_list.end(); it++) {
-            if (this->searchValue(*it) == 1) {
+            if (this->searchValue(*it, check) == 1) {
                 node.first->value = 1;
                 if (node.second) {
                     return node.first->value == 1 ? -1 : 1;
@@ -100,9 +109,12 @@ char                        Execution::searchValue(std::pair<GGraphNode*, bool> 
 }
 
 void                        Execution::resolveQueries(void) {
+    // std::list<GGraphNode*> check;
     for (GGraphNode* q : this->_queriesNode) {
         std::string str;
-        char ret = this->searchValue({q, false});
+        // check.push_back(q);
+        // char ret = this->searchValue({q, false}, check);
+        char ret = this->searchValue({q, false}, {});
         if (ret == -1) {
             str = "False";
         } else if (ret == 1) {

@@ -82,7 +82,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             Execution   *exec = new Execution(queriesNode);
 
             // Send Node A directly but can search first query in QueriesNode
-            CHECK(exec->searchValue({nodeA, false}) == -1);
+            CHECK(exec->searchValue({nodeA, false}, {}) == -1);
 
             delete exec;
         }
@@ -104,7 +104,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             Execution   *exec = new Execution(queriesNode);
 
             // Send Node A directly but can search first query in QueriesNode
-            CHECK(exec->searchValue({nodeA, false}) == -1);
+            CHECK(exec->searchValue({nodeA, false}, {}) == -1);
 
             delete exec;
         }
@@ -131,7 +131,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             CHECK(nodeD->value == 0);
 
             // Send Node A directly but can search first query in QueriesNode
-            CHECK(exec->searchValue({nodeA,false}) == 1);
+            CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
             CHECK(nodeA->value == 1);
             CHECK(nodeB->value == -1);
@@ -163,7 +163,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
             CHECK(nodeD->value == 0);
 
             // Send Node A directly but can search first query in QueriesNode
-            CHECK(exec->searchValue({nodeA,false}) == 1);
+            CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
             CHECK(nodeA->value == 1);
             CHECK(nodeB->value == 1);
@@ -196,7 +196,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 1);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == -1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == -1);
 
                 CHECK(nodeA->value == -1);
                 CHECK(nodep->value == -1);
@@ -228,7 +228,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 1);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == 1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
                 CHECK(nodeA->value == 1);
                 CHECK(nodep->value == 1);
@@ -262,7 +262,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 0);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == -1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == -1);
 
                 CHECK(nodeA->value == -1);
                 CHECK(nodep->value == -1);
@@ -294,7 +294,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 1);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == 1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
                 CHECK(nodeA->value == 1);
                 CHECK(nodep->value == 1);
@@ -326,7 +326,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 1);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == 1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
                 CHECK(nodeA->value == 1);
                 CHECK(nodep->value == 1);
@@ -360,7 +360,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 1);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == -1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == -1);
 
                 CHECK(nodeA->value == -1);
                 CHECK(nodep->value == -1);
@@ -392,7 +392,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 0);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == -1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == -1);
 
                 CHECK(nodeA->value == -1);
                 CHECK(nodep->value == -1);
@@ -424,7 +424,7 @@ TEST_CASE( "EXECUTION", "[execution]" ) {
                 CHECK(nodeC->value == 0);
 
                 // Send Node A directly but can search first query in QueriesNode
-                CHECK(exec->searchValue({nodeA,false}) == 1);
+                CHECK(exec->searchValue({nodeA,false}, {}) == 1);
 
                 CHECK(nodeA->value == 1);
                 CHECK(nodep->value == 1);
