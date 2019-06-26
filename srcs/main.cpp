@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:32:52 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 17:34:06 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/26 16:28:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,20 @@ int     work(int argc, char **argv) {
 
 int		main(int argc, char **argv)
 {
-    if (work(argc, argv) == 1)
+    bool    test = false;
+    int     result;
+    
+    if (argc == 3 && std::strncmp(argv[1], "-t", 2) == 0){
+        test = true;
+        argc = 2;
+        argv[1] = argv[2];
+    }
+    if ((result = work(argc, argv)) == 1)
         return 1;
 
     /* Init Unit Test */
-    int result = Catch::Session().run();
+    if (test)
+        result = Catch::Session().run();
     return result;
 }
 

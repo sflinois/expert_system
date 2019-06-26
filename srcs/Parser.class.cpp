@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:45:58 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/25 17:21:32 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/06/26 16:24:17 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,14 +195,16 @@ int                     Parser::checkBrackets(t_tkn* prev, t_tkn* tkn)
     {
         if (prevTkn(prev) && prev->r_type != T_OR
                 && prev->r_type != T_XOR
-                && prev->r_type != T_AND)
+                && prev->r_type != T_AND
+                && prev->r_type != T_BRACKET_O)
             return (1);
     }
     else if (tkn->r_type == T_BRACKET_C)
     {
         if (!prevTkn(prev))
             return (1);
-        if (prevTkn(prev) && prev->r_type != T_VAL)
+        if (prevTkn(prev) && prev->r_type != T_VAL
+                && prev->r_type != T_BRACKET_C)
             return (1);
     }
     return (0);
