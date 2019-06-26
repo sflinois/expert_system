@@ -533,6 +533,19 @@ TEST_CASE( "MAINTEST", "[mainTest]" ) {
         CHECK(oss_err.str() == "Syntax error at line 1: \n   a => b\n");
     }
 
+    SECTION( "loop_basic1" ) {
+        char av1[] = "./expert_system";
+        char av2[] = "tests/loop_basic1";
+        char* av[] = {av1, av2};
+
+        int i = work(2, av);
+
+        CHECK(i == 0);
+
+        CHECK(oss.str() == "A is False\n");
+        CHECK(oss_err.str() == "");
+    }
+
     // Restore CERR at instante T (before test)
     std::cout.rdbuf(p_cout_streambuf);
     std::cerr.rdbuf(p_cerr_streambuf);
