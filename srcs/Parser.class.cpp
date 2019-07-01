@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 12:45:58 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/26 16:24:17 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/07/01 11:55:05 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ std::list<t_tkn*>       &Parser::parsTokenList(std::list<t_tkn*> tkn)
         tkn.pop_front();
     }
     if (line_flag != 7 || valid_flag != 7)
+    {
+        std::cerr << "You need rules, facts statement and query lines" << std::endl;
         err = 1;
+    }
     if (err != 2)
         this->_tkn_lst.clear();
     // std::cout << std::endl << err << std::endl;

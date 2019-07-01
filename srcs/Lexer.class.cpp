@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 13:11:13 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/24 15:02:57 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/07/01 11:45:24 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ std::list<t_tkn*>    Lexer::tokenize(char *file)
             nb_line++;
         }
 	}
+    else
+    {
+        std::cerr << "Can't open file " << file << std::endl;
+    }
+    
 	ifs.close();
     // this->print_tkn_list(this->_tkn_lst);
 	return (this->_tkn_lst);

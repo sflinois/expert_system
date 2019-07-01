@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 10:32:52 by sflinois          #+#    #+#             */
-/*   Updated: 2019/06/26 16:28:33 by sflinois         ###   ########.fr       */
+/*   Updated: 2019/07/01 11:56:49 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int     work(int argc, char **argv) {
     tkn = lex.tokenize(argv[1]);
 
     if (tkn.empty()) {
+        std::cerr << "error in file <" << argv[1] << ">" << std::endl;
         return (1);
     }
     tkn = pars.parsTokenList(tkn);
