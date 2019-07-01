@@ -501,7 +501,7 @@ TEST_CASE( "MAINTEST", "[mainTest]" ) {
         CHECK(i == 1);
 
         CHECK(oss.str() == "");
-        CHECK(oss_err.str() == "Syntax error at line 1: \n   plop\n");
+        CHECK(oss_err.str() == "Syntax error at line 1: \n   plop\nerror in file <tests/error_basic1>\n");
     }
 
     SECTION( "error_basic2" ) {
@@ -514,7 +514,7 @@ TEST_CASE( "MAINTEST", "[mainTest]" ) {
         CHECK(i == 1);
 
         CHECK(oss.str() == "Error occured during parsing\n");
-        CHECK(oss_err.str() == "");
+        CHECK(oss_err.str() == "You need rules, facts statement and query lines\n");
     }
 
     SECTION( "error_basic3" ) {
@@ -527,7 +527,7 @@ TEST_CASE( "MAINTEST", "[mainTest]" ) {
         CHECK(i == 1);
 
         CHECK(oss.str() == "");
-        CHECK(oss_err.str() == "Syntax error at line 3: \n   =5\n");
+        CHECK(oss_err.str() == "Syntax error at line 3: \n   =5\nerror in file <tests/error_basic3>\n");
     }
 
     SECTION( "error_basic4" ) {
@@ -540,7 +540,7 @@ TEST_CASE( "MAINTEST", "[mainTest]" ) {
         CHECK(i == 1);
 
         CHECK(oss.str() == "");
-        CHECK(oss_err.str() == "Syntax error at line 1: \n   a => b\n");
+        CHECK(oss_err.str() == "Syntax error at line 1: \n   a => b\nerror in file <tests/error_basic4>\n");
     }
 
     SECTION( "loop_basic1" ) {
