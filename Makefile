@@ -49,6 +49,6 @@ fclean: clean
 re: fclean all
 
 test: all
-	$(NAME) test
+	$(NAME) -t test
 
 .PHONY: all clean fclean re
